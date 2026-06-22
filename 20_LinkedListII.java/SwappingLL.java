@@ -128,3 +128,56 @@ public class SwappingLL {
 //         }
     
 // }
+
+
+
+// Leetcode 
+
+//24 swapping nodes in pair
+
+// recursion based
+
+// class Solution {
+//     public ListNode swapPairs(ListNode head) {
+//         if (head == null || head.next == null) return head;
+//         ListNode temp = head.next;
+//         head.next = swapPairs(temp.next);
+//         temp.next = head;
+//         return temp;
+//     }
+// }
+
+
+// // class Solution {
+//     public ListNode swapPairs(ListNode head) {
+//         if (head == null || head.next == null) return head;
+//         ListNode first = head;
+//         ListNode prev = null;
+//         ListNode sec = head.next;
+
+//         while(first != null && sec != null) {
+//             ListNode third = sec.next;
+//             sec.next = first;
+//             first.next = third;
+//             if(prev != null) {
+//                    prev.next = sec;
+//             } else {
+//                 head = sec;
+//             }
+
+//             // update
+//             prev = first;
+//             first = third;
+
+//             if(third != null) {
+//                 sec = third.next;
+//             }else {
+//                 sec = null;
+//             }
+            
+         
+//         }
+//         return head;
+//     }
+// }
+
