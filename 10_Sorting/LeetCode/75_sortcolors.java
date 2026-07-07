@@ -1,3 +1,6 @@
+// dutch national flag 
+
+
 class Solution {
     public void sortColors(int[] nums) {
         int lp = 0, rp = nums.length-1, mid=0;
