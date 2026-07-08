@@ -1,4 +1,3 @@
-import java.util.*;
 
 public class CountingSort {
     // counting sort descending order
@@ -11,7 +10,7 @@ public class CountingSort {
 
         int count[] = new int[largest+1];
         for(int i=0; i<arr.length; i++) {
-            count[arr[i]]++;
+           
         }
 
         // sorting
