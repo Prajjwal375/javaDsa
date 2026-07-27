@@ -1,4 +1,3 @@
-import java.util.*;
 public class Recursion {
     // // Print numbers from  n to 1 (decreasing order)
     public static void printDec(int n) {
@@ -106,10 +105,10 @@ public static int calcSum(int n) {
         }
         int halfPower = powerOptimized(x, n/2); 
         int halfPowerSq  = halfPower * halfPower; 
-        if( n%2 == 0 ) {
-            return halfPowerSq;
+        if( n%2 != 0 ) {
+            return x* halfPowerSq;
         }
-        return x* halfPowerSq;
+        return halfPowerSq;
     }
 
     public static void main(String[] args) {
