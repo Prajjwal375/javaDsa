@@ -1,3 +1,4 @@
+import java.util.*;
 public class Buildbst {
     static class Node{
         int data;
@@ -63,7 +64,68 @@ public class Buildbst {
 
 
     ///////////////////////////////////////
+    ///
+    
+    public static void printInRange(Node root, int k1, int k2){
+        if(root == null){
+            return;
+        }
+        if(root.data >= k1 && root.data <= k2){
+            printInRange(root.left, k1, k2);
+            System.out.print(root.data + " ");
+            printInRange(root.right, k1, k2);
+        }else if(root.data < k1){
+            printInRange(root.right, k1, k2);
+        }else{
+            printInRange(root.left, k1, k2);
+        }
+    }
 
+    ////////////////////////////////////////////
+    ///
+    
+    public static void printpath(ArrayList<Integer> path){
+        for(int i=0; i<path.size(); i++){
+            System.out.print(path.get(i) + "->");
+        }
+        System.out.println("null");
+    }
+    public static void printRootToLeaf(Node root, ArrayList<Integer> path ){
+        // base case
+        if(root == null){
+            return;
+        }
+
+        path.add(root.data);
+
+        if(root.left == null && root.right == null){
+            printpath(path);
+        }
+        printRootToLeaf(root.left, path);
+        printRootToLeaf(root.right, path);
+        path.remove(path.size() - 1);
+
+    }
+
+    ////////////////////////////////////////////////////////////////////
+    ///
+    
+    // Validate BST
+    public static boolean isValidBST(Node root, Node min, Node max){
+        if(root == null){
+            return true;
+        }
+        if(min != null && root.data <= min.data){
+            return false;
+        }
+        if(max != null && root.data >= max.data){
+            return false;
+        }
+        return isValidBST(root.left, min, root) && isValidBST(root.right, root, max);
+    }
+
+
+    ////////////////////////////////////////////////////////////////////////////////////////////
     public static void inorder(Node root){
         if(root == null){
             return;
@@ -81,10 +143,26 @@ public class Buildbst {
         inorder(root);
         System.out.println();
 
-        root = delete(root, 1);
-        System.out.println();
+        // root = delete(root, 1);
+        // System.out.println();
 
-        inorder(root);
+        // inorder(root);
+        
+
+        ////////////////////////////////////////////
+        // printInRange(root, 5, 12);
+
+        /////////////////////////////////////////////
+
+        // printRootToLeaf(root, new ArrayList<>());
+
+        ///////////////////////////////////////////////////////
+        
+        if(isValidBST(root, null, null)){
+            System.out.println("valid bst");
+        } else {
+            System.out.println("not valid bst");
+        }
        
 
 
