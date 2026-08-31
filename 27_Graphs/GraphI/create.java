@@ -12,11 +12,8 @@ public class create {
         }
     }
 
-    public static void main(String[] args){
-        int V=5;
-        ArrayList<Edge>[] graph = new ArrayList[V]; // null -> empty arrayList
-
-        for(int i=0; i<V; i++){
+    static void createGraph(ArrayList<Edge>[] graph){
+         for(int i=0; i<graph.length; i++){
             graph[i] = new ArrayList<>();
         }
 
@@ -42,5 +39,50 @@ public class create {
             Edge e = graph[2].get(i); // edges store (s,d,w)
             System.out.println(e.dest);
         }
+    }
+
+    // BFS
+    public static void bfs(ArrayList<Edge>[] graph){  /// O(V+E)  /// O(v2) for adjacency matrix
+        Queue<Integer> q = new LinkedList<>();
+        boolean vis[] = new boolean[graph.length];
+        q.add(0);
+
+        while(!q.isEmpty()){
+            int curr = q.remove();
+            if(!vis[curr]){
+                System.out.print(curr + " ");
+                vis[curr] = true;
+                for(int i=0; i<graph[curr].size(); i++){
+                    Edge e = graph[curr].get(i);
+                    q.add(e.dest);
+                }
+            }
+        }
+        
+    }
+
+    // DFS
+    public static void dfs(ArrayList<Edge>[] graph, int curr, boolean vis[]){
+        // visit
+        System.out.print(curr + " ");
+        vis[curr] = true;
+
+        for(int i=0; i<graph[curr].size(); i++){
+            Edge e = graph[curr].get(i);
+            if(!vis[e.dest]){
+                dfs(graph, e.dest, vis);
+            }
+        }
+    }
+    public static void main(String[] args){
+        int V=7;
+        ArrayList<Edge>[] graph = new ArrayList[V]; // null -> empty arrayList
+        createGraph(graph);
+
+        bfs(graph);
+
+        
+        boolean vis[] = new boolean[graph.length];
+        dfs(graph, 0, vis);
     }
 }
