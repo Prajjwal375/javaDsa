@@ -41,10 +41,22 @@ public class create {
         }
     }
 
+
+
     // BFS
-    public static void bfs(ArrayList<Edge>[] graph){  /// O(V+E)  /// O(v2) for adjacency matrix
-        Queue<Integer> q = new LinkedList<>();
+    public static void bfs(ArrayList<Edge>[] graph){
         boolean vis[] = new boolean[graph.length];
+        for(int i=0; i<graph.length; i++){
+            if(!vis[i]){
+                bfsUtil(graph, vis);
+            }
+        }
+    }
+
+    // BFS util
+    public static void bfsUtil(ArrayList<Edge>[] graph, boolean vis[]){  /// O(V+E)  /// O(v2) for adjacency matrix
+        Queue<Integer> q = new LinkedList<>();
+       
         q.add(0);
 
         while(!q.isEmpty()){
@@ -61,7 +73,22 @@ public class create {
         
     }
 
+
+
+    /////////////////////////////////////////
+    ///
+    
     // DFS
+    public static void dfs(ArrayList<Edge>[] graph){
+        boolean vis[] = new boolean[graph.length];
+        for(int i=0; i<graph.length; i++){
+            if(!vis[i]){
+                dfs(graph, i, vis);
+            }
+        }
+    }
+
+    // DFS UTIL
     public static void dfs(ArrayList<Edge>[] graph, int curr, boolean vis[]){
         // visit
         System.out.print(curr + " ");
@@ -75,8 +102,10 @@ public class create {
         }
     }
 
-
-    // HAs path
+    ///////////////////////////////////////////////
+    ///
+    
+    // HAs path  O(V+E)
     public static boolean hasPath(ArrayList<Edge>[] graph, int src, int dest, boolean vis[]){
         // check if src and dest are same
         if(src == dest){
@@ -92,7 +121,7 @@ public class create {
         return false;
     }
 
-    
+
     public static void main(String[] args){
         int V=7;
         ArrayList<Edge>[] graph = new ArrayList[V]; // null -> empty arrayList
@@ -103,5 +132,7 @@ public class create {
 
         boolean vis[] = new boolean[graph.length];
         dfs(graph, 0, vis);
+
+        System.out.println(hasPath(graph, 0, 5, new boolean[graph.length]));
     }
 }
