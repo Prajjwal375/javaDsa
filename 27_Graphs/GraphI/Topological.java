@@ -91,7 +91,6 @@ public class Topological {
         }
         System.out.println();
     }
-    
     public static void calcIndeg(ArrayList<Edge>[] graph, int indeg[]){
         for(int i=0; i<graph.length; i++){
             for(int j=0; j<graph[i].size(); j++){
@@ -107,8 +106,6 @@ public class Topological {
         int V = 5;
         ArrayList<Edge>[] graph = new ArrayList[V];
         createGraph(graph);
-
-        
 
     } 
 
