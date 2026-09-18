@@ -64,7 +64,7 @@ public class Topological {
     ///
     ///
     
-    // Topological sort using BFS
+    // Topological sort using BFS  // kahns Algorithm
     public static void topSortBFS(ArrayList<Edge>[] graph){
         int indeg[] = new int[graph.length];
         calcIndeg(graph, indeg);
